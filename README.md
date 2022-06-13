@@ -9,7 +9,7 @@ region='us-west-2'
 rulename='sechub-fsbp-s3.2'
 buttonname='s3.2'
 des='to auto fix fsbp s3.2'
-actionid='s3.2'
+actionid='s32'
 ```
 ## create rule 配置eventbridge rule
 ```
