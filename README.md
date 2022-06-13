@@ -7,12 +7,16 @@ set parameter 设置参数
 ```
 region='us-west-2'
 rulename='sechub-fsbp-s3.2'
-email='**@**.com'
 buttonname='s3.2'
+des='to auto fix fsbp s3.2'
 actionid='s3.2'
 ```
 ## create rule 配置eventbridge rule
 ```
+buttonarn=$(aws securityhub create-action-target \
+    --name $buttonname\
+    --description $des \
+    --id $actionid --region=$region  --output text --query 'ActionTargetArn')
 aws events put-rule \
 --name $rulename \
 --event-pattern "{\"source\":[\"aws.securityhub\"], \
