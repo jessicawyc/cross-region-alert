@@ -6,9 +6,9 @@ set parameter 设置参数
 
 ```
 region='us-west-2'
-rulename='manualalert'
+rulename='sechub-fsbp-s3.2'
 email='**@**.com'
-buttonname='fsbp-s3.2'
+buttonname='s3.2'
 actionid='send2email'
 ```
 ## create rule 配置eventbridge rule
