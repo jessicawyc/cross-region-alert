@@ -1,6 +1,16 @@
 # securityhub-auto-remediation
 
 ## standard control
+set parameter 设置参数
+
+```
+region='us-west-2'
+rulename='manualalert'
+email='**@**.com'
+buttonname='s3.5'
+actionid='send2email'
+```
+## create rule 配置eventbridge rule
 ```
 aws events put-rule \
 --name $rulename \
