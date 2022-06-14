@@ -28,22 +28,26 @@ aws events put-rule \
 \"detail-type\": [\"Security Hub Findings - Custom Action\"], \
   \"resources\": [\"$buttonarn\"]}"  --region=$region
 ```
-Others
-eventbridge rule-event pattern
+### config email format in " Configure input transformer"
+Target input transformer-Input path
 ```
 {
-  "detail-type": ["Security Hub Findings - Imported"],
-  "source": ["aws.securityhub"],
-  "detail": {
-    "findings": {
-      "Compliance": {
-        "Status": ["FAILED", "WARNING"]
-      },
-      "GeneratorId": ["aws-foundational-security-best-practices/v/1.0.0/S3.2"],
-      "Workflow": {
-        "Status": ["NEW"]
-      }
-    }
-  }
+  "Description": "$.detail.findings[0].Description",
+  "Id": "$.detail.findings[0].Resources[0].Id",
+  "account": "$.detail.findings[0].AwsAccountId",
+  "region": "$.detail.findings[0].Resources[0].Region",
+  "title": "$.detail.findings[0].Title"
 }
+
 ```
+template
+```
+"Hello team, based on security check : <title> in region:<region>"
+"of account <account>"
+"You just triggered the remediation action on resource"
+"<Id>"
+"It is now fixed, please kindly check."
+"Have a nice day!"
+```
+
+
