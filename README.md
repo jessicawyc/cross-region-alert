@@ -7,9 +7,9 @@ set parameter 设置参数
 ```
 region='us-west-2'
 rulename='sechub-fsbp-s3.2'
-buttonname='fsbp-S3.2'
-des='to auto fix fsbp s3.2'
-actionid='s32'
+buttonname='BlockPublicS3'
+des='to auto block public s3'
+actionid='blocks3'
 ```
 ## create rule 配置eventbridge rule
 ```
