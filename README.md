@@ -10,13 +10,18 @@ rulename='sechub-fsbp-s3.2'
 buttonname='BlockPublicS3'
 des='to auto block public s3'
 actionid='blocks3'
+email='**@**.com'
 ```
 ## create rule 配置eventbridge rule
 ```
+snsarn=$(aws sns create-topic   --name  $rulename  --region=$region  --output text --query 'TopicArn')
+aws sns subscribe --topic-arn $snsarn --protocol email --notification-endpoint  $email --region=$region
+
 buttonarn=$(aws securityhub create-action-target \
     --name $buttonname\
     --description $des \
     --id $actionid --region=$region  --output text --query 'ActionTargetArn')
+
 aws events put-rule \
 --name $rulename \
 --event-pattern "{\"source\":[\"aws.securityhub\"], \
