@@ -55,4 +55,4 @@ template
 documentname	AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
 rolearn	arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
-Lambda role policy see file
+Lambda role policy see file https://github.com/jessicawyc/securityhub-auto-remediation/blob/main/AWS-SystemsManager-AutomationServiceRole.yaml
