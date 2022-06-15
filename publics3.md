@@ -45,13 +45,13 @@ value
 AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
 ```
 key
-rolearn就是在第一步使用cloudformation生成的role的ARN,替换accountid
+rolearn
 ```
 rolearn
 ```
-value
+value 就是在第一步使用cloudformation生成的role的ARN 运行CLI后的输出结果
 ```
-arn:aws:iam::<accoundid>:role/AutomationServiceRole
+aws iam get-role   --role-name $rolename --query 'Role.Arn' --output text
 ```
 Add trigger-Trigger configuration 选择Eventbridge,Rule-Existing rules 将第一步创建的Rule加进去
 
