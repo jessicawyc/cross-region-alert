@@ -16,7 +16,7 @@ aws iam put-role-policy --role-name=$rolename --policy-name $addpolicy --policy-
 ```
 
 ## 配置Lambda
-新建一个python 3.8环境的lambda function后,复制文件中的代码
+新建一个python 3.8环境的lambda function后,复制文件[FSBP-S3public-lambda.py中的代码 ](/FSBP-S3public-lambda.py)
 进入Configuration中配置两个环境变量
 rolearn就是在第一步使用cloudformation生成的role的ARN
 ```
