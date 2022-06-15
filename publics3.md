@@ -15,6 +15,7 @@ rolename='AutomationServiceRole'
 aws iam put-role-policy --role-name=$rolename --policy-name $addpolicy --policy-document file://autos3policy.json
 ```
 ## 配置Lambda IAM Role
+请下载lambdapolicy.json 后修改accountid
 
 ```
 lambdapolicy='lambda-auto-s3'
