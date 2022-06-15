@@ -24,7 +24,7 @@ documentname	AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
 rolearn	arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
 
-### Configuration中找到lambda的role,在IAM中打开后在policy中补充以下内容,注意要修改region和accoundid
+### Configuration中找到lambda的role,在IAM中打开后在policy中补充以下内容,注意要修改region和accountid
 
 ```
   ,
