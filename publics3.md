@@ -34,13 +34,21 @@ lambdaarn=$(aws lambda create-function \
     --handler FSBP-S3public-lambda.lambda_handler \
     --role $rolearn --region=$region --no-cli-pager --query 'FunctionArn' --output text)
 ```
-创建成功后,登录平台lambda console,进入Configuration中配置两个环境变量
-
+创建成功后,登录平台lambda console,进入Configuration中配置两个环境变量:
+key
+```
 documentname
+```
+value
 ```
 AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
 ```
+key
 rolearn就是在第一步使用cloudformation生成的role的ARN,替换accountid
+```
+rolearn
+```
+value
 ```
 arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
