@@ -31,7 +31,7 @@
                 "iam:PassRole"
             ],
             "Resource": 
-"arn:aws:iam::373328685180:role/AutomationServiceRole",
+"arn:aws:iam::*:role/AutomationServiceRole",
             "Condition": {
                 "StringLikeIfExists": {
                     "iam:PassedToService": "ssm.amazonaws.com"
