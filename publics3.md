@@ -44,6 +44,6 @@ rolearn就是在第一步使用cloudformation生成的role的ARN,替换accountid
 ```
 arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
-Add trigger 选择Eventbridge,将第一步创建的Rule加进去
+Add trigger-Trigger configuration 选择Eventbridge,Rule-Existing rules 将第一步创建的Rule加进去
 
 
