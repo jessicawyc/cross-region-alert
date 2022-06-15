@@ -1,3 +1,5 @@
+# Public S3 Preventive Control
+将所有需要公开的S3放在一个OU下边,将其它OU attach [scp-no-public-s3](/scp-no-public-s3)以阻止打开
 # Public S3 Auto Block Auto Remediation
 通过lambda读取securityhub发出的event,调用SSM-automation进行修复
 ## 配置2个IAM Role
