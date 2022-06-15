@@ -52,4 +52,4 @@ template
 "Have a nice day!"
 ```
 ## 配置后台自动化处理
-Block public S3 请见
+Block public S3 请见 [publics3.md](/publics3.md)
