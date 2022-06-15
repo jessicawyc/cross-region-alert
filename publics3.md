@@ -31,7 +31,7 @@ lambdaarn=$(aws lambda create-function \
     --function-name $function \
     --runtime python3.9 \
     --zip-file fileb://FSBP-S3public-lambda.zip \
-    --handler FSBP-S3public-lambda.handler \
+    --handler FSBP-S3public-lambda.lambda_handler \
     --role $rolearn --region=$region --no-cli-pager --query 'FunctionArn' --output text)
 ```
 创建成功后,登录平台lambda console,进入Configuration中配置两个环境变量
