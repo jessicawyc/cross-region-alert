@@ -44,8 +44,6 @@ rolearn就是在第一步使用cloudformation生成的role的ARN,替换accountid
 ```
 arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
-## 将lambda加入Eventbridge的第二个Target
-```
-aws events put-targets --rule $rulename  --targets "Id"="2","Arn"=$lambdaarn --region=$region
-```
+Add trigger 选择Eventbridge,将第一步创建的Rule加进去
+
 
