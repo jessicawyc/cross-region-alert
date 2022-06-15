@@ -1,6 +1,6 @@
-# Public S3 Preventive Control
+# 1.Public S3 Preventive Control
 将所有需要公开的S3放在一个OU下边,将其它OU attach [scp-no-public-s3](/scp-no-public-s3)以阻止打开
-# Public S3 Auto Block Auto Remediation
+# 2.Public S3 Auto Block Auto Remediation
 通过lambda读取securityhub发出的event,调用SSM-automation进行修复
 ## 配置2个IAM Role
 ### AutomationServiceRole
@@ -57,6 +57,7 @@ value 就是在第一步使用cloudformation生成的role的ARN 运行CLI后的�
 ```
 aws iam get-role   --role-name $rolename --query 'Role.Arn' --output text
 ```
-
+# 3.Public S3 Sensitive Data detection
+使用macie对新打开public access 的S3进行自动扫描,检查是否存在敏感数据
 
 
