@@ -23,7 +23,7 @@ documentname	AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
 rolearn	arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
 
-### 需要给现有的lambda Role 增加调用automation的权限,运行
+### Configuration中找到lambda的role,在IAM中打开后在policy中补充以下内容,注意要修改region和accoundid
 
 ```
   ,
