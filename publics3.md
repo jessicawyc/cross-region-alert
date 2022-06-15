@@ -35,7 +35,9 @@ lambdaarn=$(aws lambda create-function \
     --handler FSBP-S3public-lambda.lambda_handler \
     --role $rolearn --region=$region --no-cli-pager --query 'FunctionArn' --output text)
 ```
-创建成功后,登录平台lambda console,进入Configuration中配置两个环境变量:
+创建成功后,登录平台lambda console,
+Add trigger-Trigger configuration 选择Eventbridge,Rule-Existing rules 将第一步创建的Rule加进去
+进入Configuration中配置两个环境变量:
 key
 ```
 documentname
@@ -53,6 +55,6 @@ value 就是在第一步使用cloudformation生成的role的ARN 运行CLI后的�
 ```
 aws iam get-role   --role-name $rolename --query 'Role.Arn' --output text
 ```
-Add trigger-Trigger configuration 选择Eventbridge,Rule-Existing rules 将第一步创建的Rule加进去
+
 
 
