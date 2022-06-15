@@ -24,3 +24,14 @@ rolearn	arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
 
 ### 需要给现有的lambda Role 增加调用automation的权限,运行
+
+```
+    ,
+   {
+            "Action": "ssm:StartAutomationExecution",
+            "Effect": "Allow",
+            "Resource": [
+                "arn:aws:ssm:eu-west-3:*:automation-definition/AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock:$DEFAULT"
+            ]
+        },
+```
