@@ -1,7 +1,8 @@
 # securityhub-auto-remediation
 
-## standard control
+## General Step
 通过配置custome action-eventbridge-automation对特定control进行自动修复
+![架构图](/)
 set parameter 设置参数
 
 ```
