@@ -1,6 +1,6 @@
 # Public S3 Auto Block Auto Remediation
 通过lambda读取securityhub发出的event,调用SSM-automation进行修复
-## 配置SSM-Automation IAM Role
+## 配置2个IAM Role
 ### AutomationServiceRole
 Step1 请使用官方提供的cloudformation template运行
 Download and unzip the AWS-SystemsManager-AutomationServiceRole.zip file. 
@@ -14,7 +14,7 @@ addpolicy='Auto4S3block'
 rolename='AutomationServiceRole'
 aws iam put-role-policy --role-name=$rolename --policy-name $addpolicy --policy-document file://autos3policy.json
 ```
-## 配置Lambda IAM Role
+### 配置Lambda IAM Role
 请下载lambdapolicy.json 后修改accountid
 
 ```
@@ -27,12 +27,12 @@ aws iam put-role-policy --role-name=$rolename --policy-name $addpolicy --policy-
 ## Create Lambda
 ```
 function='auto-s3-public'
-aws lambda create-function \
+lambdaarn=$(aws lambda create-function \
     --function-name $function \
     --runtime python3.9 \
     --zip-file fileb://FSBP-S3public-lambda.zip \
     --handler FSBP-S3public-lambda.handler \
-    --role $rolearn --region=$region --no-cli-pager
+    --role $rolearn --region=$region --no-cli-pager --query 'FunctionArn' --output text)
 ```
 创建成功后,登录平台lambda console,进入Configuration中配置两个环境变量
 
@@ -44,5 +44,8 @@ rolearn就是在第一步使用cloudformation生成的role的ARN,替换accountid
 ```
 arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
-
+## 将lambda加入Eventbridge的第二个Target
+```
+aws events put-targets --rule $rulename  --targets "Id"="2","Arn"=$lambdaarn --region=$region
+```
 
