@@ -49,10 +49,5 @@ template
 "It is now fixed, please kindly check."
 "Have a nice day!"
 ```
-## lambda
-配置两个环境变量
-```
-documentname	AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
-rolearn	arn:aws:iam::<accoundid>:role/AutomationServiceRole
-```
-Lambda role policy see file https://github.com/jessicawyc/securityhub-auto-remediation/blob/main/AWS-SystemsManager-AutomationServiceRole.yaml
+## 配置后台自动化处理
+Block public S3 请见
