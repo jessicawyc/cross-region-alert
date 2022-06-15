@@ -23,36 +23,17 @@ rolearn=$(aws iam create-role --role-name $rolename --assume-role-policy-documen
 aws iam put-role-policy --role-name=$rolename --policy-name $addpolicy --policy-document file://lambdapolicy.json
 ```
 
-## 配置Lambda
+## Create Lambda
 新建一个python 3.8环境的lambda function后,复制文件[FSBP-S3public-lambda.py中的代码 ](/FSBP-S3public-lambda.py)
 进入Configuration中配置两个环境变量
 rolearn就是在第一步使用cloudformation生成的role的ARN
+documentname
 ```
-documentname	AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
-rolearn	arn:aws:iam::<accoundid>:role/AutomationServiceRole
+AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock
+```
+rolearn
+```
+arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ```
 
-### Configuration中找到lambda的role,在IAM中打开后在policy中补充以下内容,注意要修改region和accountid
 
-```
-  ,
-        {
-            "Action": "ssm:StartAutomationExecution",
-            "Effect": "Allow",
-            "Resource": [
-                "arn:aws:ssm:<region>:*:automation-definition/AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock:$DEFAULT"
-            ]
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "iam:PassRole"
-            ],
-            "Resource": "arn:aws:iam::<accoundid>:role/AutomationServiceRole",
-            "Condition": {
-                "StringLikeIfExists": {
-                    "iam:PassedToService": "ssm.amazonaws.com"
-                }
-            }
-        }
-```
