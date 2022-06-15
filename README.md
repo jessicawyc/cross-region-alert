@@ -5,12 +5,12 @@
 set parameter 设置参数
 
 ```
-region='us-west-2'
+region='eu-west-2'
 rulename='sechub-fsbp-s3'
 buttonname='BlockPublicS3'
 des='to auto block public s3'
 actionid='blocks3'
-email='**@**.com'
+email='**@qq.com'
 ```
 ## create rule 配置eventbridge rule
 ```
