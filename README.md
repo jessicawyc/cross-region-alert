@@ -1,8 +1,9 @@
 # securityhub-auto-remediation
 
 ## General Step
-通过配置custome action-eventbridge-automation对特定control进行自动修复
-![架构图](/)
+通过配置custome action-eventbridge-automation或lambda 对securityhub的标准中特定control或finding进行自动修复.
+
+![架构图](/architect.png)
 set parameter 设置参数
 
 ```
@@ -52,5 +53,5 @@ template
 "It is now fixed, please kindly check."
 "Have a nice day!"
 ```
-## 配置后台自动化处理
+## 配置后台自动化处理方式
 Block public S3 请见 [publics3.md](/publics3.md)
