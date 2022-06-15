@@ -14,6 +14,13 @@ addpolicy='Auto4S3block'
 rolename='AutomationServiceRole'
 aws iam put-role-policy --role-name=$rolename --policy-name $addpolicy --policy-document file://autos3policy.json
 ```
+## 配置Lambda IAM Role
+
+```
+lambdapolicy='lambda-auto-s3'
+rolename='lambda-auto-s3'
+aws iam put-role-policy --role-name=$rolename --policy-name $addpolicy --policy-document file://lambdapolicy.json
+```
 
 ## 配置Lambda
 新建一个python 3.8环境的lambda function后,复制文件[FSBP-S3public-lambda.py中的代码 ](/FSBP-S3public-lambda.py)
