@@ -1,4 +1,4 @@
-# Public S3 Auto Block
+# Public S3 Auto Block Auto Remediation
 通过lambda读取securityhub发出的event,调用SSM-automation进行修复
 ## 配置SSM-Automation IAM Role
 ### AutomationServiceRole
@@ -26,12 +26,24 @@ rolearn	arn:aws:iam::<accoundid>:role/AutomationServiceRole
 ### 需要给现有的lambda Role 增加调用automation的权限,运行
 
 ```
-    ,
-   {
+  ,
+        {
             "Action": "ssm:StartAutomationExecution",
             "Effect": "Allow",
             "Resource": [
-                "arn:aws:ssm:eu-west-3:*:automation-definition/AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock:$DEFAULT"
+                "arn:aws:ssm:<region>:*:automation-definition/AWSConfigRemediation-ConfigureS3BucketPublicAccessBlock:$DEFAULT"
             ]
         },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "iam:PassRole"
+            ],
+            "Resource": "arn:aws:iam::<accoundid>:role/AutomationServiceRole",
+            "Condition": {
+                "StringLikeIfExists": {
+                    "iam:PassedToService": "ssm.amazonaws.com"
+                }
+            }
+        }
 ```
