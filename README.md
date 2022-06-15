@@ -1,7 +1,7 @@
 # securityhub-auto-remediation
 
-## General Step
-通过配置custome action-eventbridge-automation或lambda 对securityhub的标准中特定control或finding进行自动修复.
+## General Steps
+通过配置custom action-eventbridge-automation或lambda 对securityhub的标准中特定control或finding进行自动修复,同时发送通知📧.
 
 ![架构图](/architect.png)
 set parameter 设置参数
@@ -14,7 +14,7 @@ des='to auto block public s3'
 actionid='blocks3'
 email='**@qq.com'
 ```
-## create rule 配置eventbridge rule
+## Step1 create rule 配置eventbridge rule
 ```
 snsarn=$(aws sns create-topic   --name  $rulename  --region=$region  --output text --query 'TopicArn')
 aws sns subscribe --topic-arn $snsarn --protocol email --notification-endpoint  $email --region=$region
@@ -32,7 +32,7 @@ aws events put-rule \
   
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --region=$region
 ```
-### config email format in " Configure input transformer"
+### Step2 config email format in " Configure input transformer"
 Target input transformer-Input path
 ```
 {
@@ -53,5 +53,6 @@ template
 "It is now fixed, please kindly check."
 "Have a nice day!"
 ```
-## 配置后台自动化处理方式
-Block public S3 请见 [publics3.md](/publics3.md)
+## Step3 配置后台自动化处理方式
+Public access S3 请详见 [publics3.md](/publics3.md)
+EC2 Public IP 请详见 tbd
