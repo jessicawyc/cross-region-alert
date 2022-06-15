@@ -6,7 +6,7 @@ set parameter 设置参数
 
 ```
 region='us-west-2'
-rulename='sechub-fsbp-s3.2'
+rulename='sechub-fsbp-s3'
 buttonname='BlockPublicS3'
 des='to auto block public s3'
 actionid='blocks3'
