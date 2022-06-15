@@ -7,7 +7,7 @@ Download and unzip the AWS-SystemsManager-AutomationServiceRole.zip file.
 https://docs.aws.amazon.com/systems-manager/latest/userguide/automation-cf.html
 
 Step2 此role只能执行基本Automation,本案例中需要赋予其block S3的权限,首先下载policy文件在本地
-[autos3policy.json]()
+[autos3policy.json](/autos3policy.json)
 再运行CLI
 ```
 addpolicy='Auto4S3block'
