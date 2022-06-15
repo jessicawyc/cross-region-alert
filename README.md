@@ -27,6 +27,8 @@ aws events put-rule \
 --event-pattern "{\"source\":[\"aws.securityhub\"], \
 \"detail-type\": [\"Security Hub Findings - Custom Action\"], \
   \"resources\": [\"$buttonarn\"]}"  --region=$region
+  
+aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --region=$region
 ```
 ### config email format in " Configure input transformer"
 Target input transformer-Input path
