@@ -59,5 +59,6 @@ aws iam get-role   --role-name $rolename --query 'Role.Arn' --output text
 ```
 # 3.Public S3 Sensitive Data detection
 使用macie对新打开public access 的S3进行自动扫描,检查是否存在敏感数据
+https://github.com/jessicawyc/macie-auto-scan-public/tree/main
 
 
