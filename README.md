@@ -3,9 +3,9 @@
 # 2.Public S3 Auto Block Auto Remediation
 通过lambda读取securityhub发出的event,调用SSM-automation对公开的S3进行自动修复
 ## 2.1 Securityhub中的基本配置方法
-请见
+请见[alertconfig.md](/alertconfig.md)
 ## 2.2 后台自动化处理的配置方法
-请见
+请见[publics3.md](/publics3.md)
 # 3.Public S3 Sensitive Data detection
 使用macie对新打开public access 的S3进行自动扫描,检查是否存在敏感数据
 https://github.com/jessicawyc/macie-auto-scan-public/tree/main
