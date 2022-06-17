@@ -10,6 +10,7 @@
 在Securityhub中接收到新打开public S3的finding后,自动启动macie对S3进行自动扫描,检查S3是否存在敏感数据
 请详见
 https://github.com/jessicawyc/macie-auto-scan-public/tree/main
-当发现保存有sensitive data的S3是public时,securityhub自动生成一条SIEM Alert
+
+当发现保存有sensitive data的S3设置为public时,securityhub自动生成一条SIEM Alert
 请详见:
 https://github.com/jessicawyc/securityhub-siem-insight/tree/main/s3
