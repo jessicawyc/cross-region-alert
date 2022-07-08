@@ -13,9 +13,8 @@ aws iam put-role-policy --role-name=$rolename --policy-name $lambdapolicy --poli
 
 ## Create Lambda in each region
 ```
-for region in regions;do
+function='rds-replicate-siem'
 echo region
-
 lambdaarn=$(aws lambda create-function \
     --function-name $function \
     --runtime python3.9 \
