@@ -15,7 +15,7 @@
             "Sid": "functional",
             "Effect": "Allow",
             "Action": [
-                "dms:DescribeReplicationTasks",
+            
                 "securityhub:BatchImportFindings"
             ],
             "Resource": "*"
