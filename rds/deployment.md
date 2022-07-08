@@ -23,9 +23,6 @@ lambdaarn=$(aws lambda create-function \
     --zip-file fileb://index.zip \
     --handler index.lambda_handler \
     --role $rolearn --region=$region --no-cli-pager --query 'FunctionArn' --output text)
-done
-```
-```
 rulearn=$(aws events put-rule \
 --name $rulename \
 --event-pattern "{ \"detail\": {\"eventName\": [\"CreateDBInstanceReadReplica\"]}}"  --region=$region)
@@ -36,4 +33,6 @@ aws lambda add-permission \
 --principal events.amazonaws.com \
 --source-arn $rulearn --region=$region
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$lambdaarn --region=$region
+done
 ```
+
