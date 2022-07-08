@@ -15,7 +15,7 @@ aws iam put-role-policy --role-name=$rolename --policy-name $lambdapolicy --poli
 ## Create Lambda in each region
 ```
 for region in $regions; do
-echo region
+echo $region
 lambdaarn=$(aws lambda create-function \
     --function-name $function \
     --runtime python3.9 \
