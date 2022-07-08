@@ -3,7 +3,7 @@
 请下载所有文件到本地 Download all the related files here
 ### Set Parameter参数设置
 ```
-regions=
+regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text))
 lambdapolicy='lambda-rds-replicate-siem-policy'
 rolename='lambda-rds-replicate-siem'
 function='rds-replicate-siem'
