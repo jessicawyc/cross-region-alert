@@ -8,6 +8,7 @@ function='rds-replicate-siem'
 lambdapolicy='lambda-rds-replicate-siem-policy'
 rolename='lambda-rds-replicate-siem'
 function='rds-replicate-siem'
+rulename='rdsreplicate-lambda'
 rolearn=$(aws iam create-role --role-name $rolename --assume-role-policy-document file://trust-lambda.json --query 'Role.Arn' --output text)
 aws iam put-role-policy --role-name=$rolename --policy-name $lambdapolicy --policy-document file://lambdapolicy.json
 ```
@@ -23,4 +24,10 @@ lambdaarn=$(aws lambda create-function \
     --handler index.lambda_handler \
     --role $rolearn --region=$region --no-cli-pager --query 'FunctionArn' --output text)
 done
+```
+```
+aws events put-rule \
+--name $rulename \
+--event-pattern "{ \"detail\": {\"eventName": [\"CreateDBInstanceReadReplica\"]}}"  --region=$region
+aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$lambdaarn --region=$region
 ```
