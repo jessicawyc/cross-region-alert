@@ -28,6 +28,6 @@ done
 ```
 aws events put-rule \
 --name $rulename \
---event-pattern "{ \"detail\": {\"eventName": [\"CreateDBInstanceReadReplica\"]}}"  --region=$region
+--event-pattern "{ \"detail\": {\"eventName\": [\"CreateDBInstanceReadReplica\"]}}"  --region=$region
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$lambdaarn --region=$region
 ```
