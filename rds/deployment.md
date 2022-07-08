@@ -4,6 +4,7 @@
 ### Set Parameter参数设置
 ```
 regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output text))
+function='rds-replicate-siem'
 lambdapolicy='lambda-rds-replicate-siem-policy'
 rolename='lambda-rds-replicate-siem'
 function='rds-replicate-siem'
@@ -13,7 +14,7 @@ aws iam put-role-policy --role-name=$rolename --policy-name $lambdapolicy --poli
 
 ## Create Lambda in each region
 ```
-function='rds-replicate-siem'
+for region in $regions; do
 echo region
 lambdaarn=$(aws lambda create-function \
     --function-name $function \
