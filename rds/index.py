@@ -1,5 +1,6 @@
 import json
 import boto3
+import os
 import datetime
 from datetime import date
 
@@ -9,16 +10,33 @@ def lambda_handler(event, context):
     sourcearn=event["detail"]["responseElements"]["readReplicaSourceDBInstanceIdentifier"]
     if ':' in sourcearn:
         sourceregion=sourcearn.split(':',6)[3]
-        text='your data in RDS instance is replicating from '+sourceregion+' to '+targetregion
-        print(text)
+        user=event["detail"]["userIdentity"]["principalId"]
         aws_account_id=sourcearn.split(':',6)[4]
-        sh = boto3.client('securityhub',region_name=sourceregion)
-        create_securityhub_finding (aws_account_id,sourceregion,sourcearn,text,sh) 
-    
+        rds=sourcearn.split(':',6)[6]
+        text=rds+' in account '+aws_account_id+' is transferring data from '+sourceregion+' to '+targetregion+'\n by identity:  '+user
+        sns(text)
+        #在目标region生成一条sechub finding
+        sh = boto3.client('securityhub',region_name=targetregion)
+        create_securityhub_finding (aws_account_id,targetregion,sourcearn,text,sh) 
+        #给compliance team发送邮件通知
     return {
         'statusCode': 200,
         'body': json.dumps('bon travailler')
     }
+def sns(text):
+    sns_client = boto3.client('sns')
+    snsTopicArn=os.environ['snsarn']
+    snsBody='''Hello legal/compliance team:
+    We are happy to alert you that one of your database,
+    '''
+    snsBody+=text
+    snsBody+='''
+    Please kindly check the details for compliance.
+    if you have any concern, please feel free to contact your IT team
+    Thank you!
+    '''
+    response = sns_client.publish(TopicArn=snsTopicArn,Message=snsBody)
+    print(response)
 def create_securityhub_finding (aws_account_id,region,resourceid,text,sh):
     alerttype='Effects/Data Exfiltration/RDS Replica Cross Region'
     title='SIEM Alert-Cross Region replicate of RDS'
