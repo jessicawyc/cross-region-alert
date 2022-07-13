@@ -7,7 +7,6 @@ regions=($(aws ec2 describe-regions --query 'Regions[*].RegionName' --output tex
 function='rds-replicate-siem'
 lambdapolicy='lambda-rds-replicate-siem-policy'
 rolename='lambda-rds-replicate-siem'
-function='rds-replicate-siem'
 rulename='rdsreplicate-lambda'
 rolearn=$(aws iam create-role --role-name $rolename --assume-role-policy-document file://trust-lambda.json --query 'Role.Arn' --output text)
 aws iam put-role-policy --role-name=$rolename --policy-name $lambdapolicy --policy-document file://lambdapolicy.json
